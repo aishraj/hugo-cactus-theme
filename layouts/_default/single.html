@@ -4,15 +4,15 @@
         <h1>{{ .Title }}</h1>
         <h2 class="subtitle">{{ .Description | markdownify }}</h2>
         <h2 class="headline">
-        {{ .Date.Format "January 2, 2006" }}
-        <br>
-        {{ with .Params.tags }}
-        {{ if ge (len .) 1 }}
+            {{ .Date.Format "January 2, 2006" }}
+            <br>
+            {{ with .Params.tags }}
+            {{ if ge (len .) 1 }}
             {{ range . }}
-                <a href="{{ printf "tags/%s" (. | urlize) | absURL }}">{{ . }}</a>
+            <a href="{{ printf "tags/%s" (. | urlize) | absURL }}">{{ . }}</a>
             {{ end }}
-        {{ end }}
-        {{ end}}
+            {{ end }}
+            {{ end}}
         </h2>
     </header>
     <section id="post-body">
@@ -20,20 +20,14 @@
     </section>
 </article>
 
-<footer id="post-meta" class="clearfix"> 
+<footer id="post-meta" class="clearfix">
     {{ with .Site.Params.twitter }}<a href="https://twitter.com/{{ . }}">{{ end }}
-    <img class="avatar" src="https://gravatar.com/avatar/{{ .Site.Params.GravatarHash }}?s=100">
-    <div>
-        <span class="dark">{{ .Site.Params.name }}</span>
-        <span>{{ .Site.Params.aboutAuthor }}</span>
-    </div>
-    {{ with .Site.Params.twitter }}</a>{{ end }}
-    <section id="sharing">
-        {{ partial "share.html" . }}
-    </section>
+        <img class="avatar" src="https://gravatar.com/avatar/{{ .Site.Params.GravatarHash }}?s=100">
+        <div>
+            <span class="dark">{{ .Site.Params.author }}</span>
+            <span>{{ .Site.Params.aboutAuthor }}</span>
+        </div>
 </footer>
-
-{{ template "_internal/disqus.html" . }}
 
 {{ partial "latest-posts.html" . }}
 {{ end }}
